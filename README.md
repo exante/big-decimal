@@ -23,8 +23,9 @@ fromBigDec({ scale: 2, value: 12345 }); // -> 123.45
 toBigDec(123.45); // -> { scale: 2, value: 12345 }
 ```
 
-### Some title
-The library is tested to behave correctly with all kinds of input. It correctly handles all JavaScript quirks when dealing with numbers and accounts for strings, scientific notation, leading and trailing zeros and invalid input.
+### Features
+* Robust: The library is tested to behave correctly with all kinds of input. It correctly handles all JavaScript quirks when dealing with numbers and accounts for strings, scientific notation, leading and trailing zeros and invalid input.
+* Lightweight: 800 bytes minified
 
 ### Does not provide BigDecimal arithmetic
 This library is intended to be as lightweight as possible. Therefore it only provides helpers to convert numbers
