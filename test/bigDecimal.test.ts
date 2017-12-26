@@ -23,6 +23,28 @@ test('toBigDec', assert => {
     '-00001.1000',
   );
 
+  // failing tests
+  assert.throws(
+    () => toBigDec({} as any),
+    /Bad value passed to toBigDec: \[object Object\]/,
+    'Throws if an object is passsed',
+  );
+  assert.throws(
+    () => toBigDec([] as any),
+    /Bad value passed to toBigDec:/,
+    'Throws if an array is passed',
+  );
+  assert.throws(
+    () => toBigDec('123qweasd'),
+    /Bad value passed to toBigDec:/,
+    'Throws if an arbitrary string is passed',
+  );
+  assert.throws(
+    () => toBigDec(NaN),
+    /Bad value passed to toBigDec:/,
+    'Throws if NaN is passed',
+  );
+
   assert.end();
 });
 
@@ -31,6 +53,11 @@ test('fromBigDec', assert => {
     fromBigDec({ scale: 2, value: -35566 }),
     -355.66,
     '{ scale: 2, value: -35566 }',
+  );
+  assert.equals(
+    fromBigDec({ scale: '2', value: '-35566' } as any),
+    -355.66,
+    '{ scale: \'2\', value: \'-35566\' }',
   );
   assert.equals(
     fromBigDec({ scale: 2, value: 485620 }),
@@ -46,6 +73,13 @@ test('fromBigDec', assert => {
     fromBigDec({ scale: 4, value: 1111 }),
     0.1111,
     '{ scale: 4, value: 1111 }',
+  );
+
+  // failing tests
+  assert.throws(
+    () => fromBigDec({ scale: 2, value: '-35.56.6' } as any),
+    /fromBigDec: both scale and value must be numeric/,
+    'Should throw for non-numeric values',
   );
 
   assert.end();

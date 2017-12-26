@@ -10,8 +10,14 @@ function isNumericValue(n: any): n is number {
 }
 
 export function fromBigDec(bigDec: BigDecimal) {
-  const scale = bigDec.scale;
-  const floatVal = bigDec.value * 10 ** (-1 * scale);
+  const { scale, value } = bigDec;
+  if (!isNumericValue(scale) || !isNumericValue(value)) {
+    throw new Error(
+      'fromBigDec: both scale and value must be numeric. ' +
+      `Instead, ${scale} and ${value} were passed`,
+    );
+  }
+  const floatVal = value * 10 ** (-1 * scale);
   return Number(floatVal.toFixed(Math.abs(scale)));
 }
 
