@@ -27,6 +27,10 @@
   ],
   "author": "Yaroslav Sergievsky <everdimension@gmail.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/exante/big-decimal.git"
+  },
   "devDependencies": {
     "@types/tape": "^4.2.31",
     "husky": "^0.14.3",
