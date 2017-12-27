@@ -27,7 +27,7 @@ toBigDec(123.45); // -> { scale: 2, value: 12345 }
 * Robust: The library is tested to behave correctly with all kinds of input. It correctly handles all JavaScript quirks when dealing with numbers and accounts for strings, scientific notation, leading and trailing zeros and invalid input.
 * Lightweight: 800 bytes minified
 
-### Does not provide BigDecimal arithmetic
+#### NOTE: Does not provide BigDecimal arithmetic
 This library is intended to be as lightweight as possible. Therefore it only provides helpers to convert numbers
 to and from BigDecimal format. It does not provide utilities for BigDecimal arithmetic.
 If you need precision arithmetic in JavaScript, take a look at
