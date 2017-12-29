@@ -4,7 +4,7 @@ A very small set of utility functions to convert numbers in Big Decimal format t
 numbers and back.
 
 [![version][version-badge]][package]
-[![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+[![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 
 ### Install
