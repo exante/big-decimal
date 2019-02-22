@@ -11,14 +11,26 @@ function isNumericValue(n: any): n is number {
 
 export function fromBigDec(bigDec: BigDecimal) {
   const { scale, value } = bigDec;
-  if (!isNumericValue(scale) || !isNumericValue(value)) {
+  let allowedScale = scale;
+
+  /*
+    if scale is less than 0 or greater than 100, we get an exception at toFixed method call.
+    https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed#Exceptions
+  */
+  if (allowedScale < 0) {
+    allowedScale = 0;
+  } else if (allowedScale > 100) {
+    allowedScale = 100;
+  }
+
+  if (!isNumericValue(allowedScale) || !isNumericValue(value)) {
     throw new Error(
       'fromBigDec: both scale and value must be numeric. ' +
-      `Instead, ${scale} and ${value} were passed`,
+        `Instead, ${scale} and ${value} were passed`
     );
   }
-  const floatVal = value * 10 ** (-1 * scale);
-  return Number(floatVal.toFixed(Math.abs(scale)));
+  const floatVal = value * 10 ** (-1 * allowedScale);
+  return Number(floatVal.toFixed(Math.abs(allowedScale)));
 }
 
 export function toBigDec(numberRaw: number | string): BigDecimal {
@@ -40,6 +52,6 @@ export function toBigDec(numberRaw: number | string): BigDecimal {
   }
   return {
     value,
-    scale,
+    scale
   };
 }

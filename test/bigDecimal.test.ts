@@ -20,29 +20,29 @@ test('toBigDec', assert => {
   assert.deepEquals(
     toBigDec('-00001.1000'),
     { scale: 1, value: -11 },
-    '-00001.1000',
+    '-00001.1000'
   );
 
   // failing tests
   assert.throws(
     () => toBigDec({} as any),
     /Bad value passed to toBigDec: \[object Object\]/,
-    'Throws if an object is passsed',
+    'Throws if an object is passsed'
   );
   assert.throws(
     () => toBigDec([] as any),
     /Bad value passed to toBigDec:/,
-    'Throws if an array is passed',
+    'Throws if an array is passed'
   );
   assert.throws(
     () => toBigDec('123qweasd'),
     /Bad value passed to toBigDec:/,
-    'Throws if an arbitrary string is passed',
+    'Throws if an arbitrary string is passed'
   );
   assert.throws(
     () => toBigDec(NaN),
     /Bad value passed to toBigDec:/,
-    'Throws if NaN is passed',
+    'Throws if NaN is passed'
   );
 
   assert.end();
@@ -52,34 +52,58 @@ test('fromBigDec', assert => {
   assert.equals(
     fromBigDec({ scale: 2, value: -35566 }),
     -355.66,
-    '{ scale: 2, value: -35566 }',
+    '{ scale: 2, value: -35566 }'
   );
   assert.equals(
     fromBigDec({ scale: '2', value: '-35566' } as any),
     -355.66,
-    '{ scale: \'2\', value: \'-35566\' }',
+    "{ scale: '2', value: '-35566' }"
   );
   assert.equals(
     fromBigDec({ scale: 2, value: 485620 }),
     4856.2,
-    '{ scale: 2, value: 485620 }',
+    '{ scale: 2, value: 485620 }'
   );
   assert.equals(
     fromBigDec({ scale: 3, value: 9876 }),
     9.876,
-    '{ scale: 3, value: 9876 }',
+    '{ scale: 3, value: 9876 }'
   );
   assert.equals(
     fromBigDec({ scale: 4, value: 1111 }),
     0.1111,
-    '{ scale: 4, value: 1111 }',
+    '{ scale: 4, value: 1111 }'
+  );
+
+  assert.equals(
+    fromBigDec({ scale: 0, value: 132435 }),
+    132435,
+    '{ scale: 0, value: 132435 }'
+  );
+
+  assert.equals(
+    fromBigDec({ scale: -10, value: 132435 }),
+    132435,
+    '{ scale: -10, value: 132435 }'
+  );
+
+  assert.equals(
+    fromBigDec({ scale: 100, value: 132435 }),
+    1.32435e-95,
+    '{ scale: 100, value: 132435 }'
+  );
+
+  assert.equals(
+    fromBigDec({ scale: 101, value: 132435 }),
+    1.32435e-95,
+    '{ scale: 101, value: 132435 }'
   );
 
   // failing tests
   assert.throws(
     () => fromBigDec({ scale: 2, value: '-35.56.6' } as any),
     /fromBigDec: both scale and value must be numeric/,
-    'Should throw for non-numeric values',
+    'Should throw for non-numeric values'
   );
 
   assert.end();
