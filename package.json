@@ -1,6 +1,6 @@
 {
   "name": "@exante/big-decimal",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Utility functions to convert numbers to and from big decimal objects.",
   "main": "lib/bigDecimal.js",
   "typings": "lib/types/bigDecimal.d.ts",
