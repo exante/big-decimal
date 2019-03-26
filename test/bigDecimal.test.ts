@@ -83,7 +83,7 @@ test('fromBigDec', assert => {
 
   assert.equals(
     fromBigDec({ scale: -10, value: 132435 }),
-    132435,
+    1324350000000000,
     '{ scale: -10, value: 132435 }'
   );
 
@@ -97,6 +97,12 @@ test('fromBigDec', assert => {
     fromBigDec({ scale: 101, value: 132435 }),
     1.32435e-95,
     '{ scale: 101, value: 132435 }'
+  );
+
+  assert.equals(
+    fromBigDec({ scale: -1, value: 2 }),
+    20,
+    '{ scale: -1, value: 2 }'
   );
 
   // failing tests

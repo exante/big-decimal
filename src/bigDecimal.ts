@@ -25,8 +25,8 @@ export function fromBigDec(bigDec: BigDecimal) {
   */
   let allowedScale = scale;
 
-  if (allowedScale < 0) {
-    allowedScale = 0;
+  if (allowedScale < -100) {
+    allowedScale = -100;
   } else if (allowedScale > 100) {
     allowedScale = 100;
   }
